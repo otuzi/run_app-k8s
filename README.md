@@ -17,7 +17,8 @@
 5. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложений из п.1.
 
 ### Ответ
-Deployment: 
+Deployment: https://github.com/otuzi/run_app-k8s/blob/main/README.md#:~:text=README.md-,deployment,-.yaml
+
 
 ------
 

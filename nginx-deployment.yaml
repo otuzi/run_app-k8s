@@ -19,7 +19,7 @@ spec:
         - sh
         - -c
         - >
-          until nslookup nginx-service; do echo waiting for nginx-service; sleep 2; done
+          until nslookup nginx-service.default.svc.cluster.local > /dev/null 2>&1; do echo waiting for nginx-service; sleep 2; done
       containers:
       - name: nginx
         image: nginx:latest

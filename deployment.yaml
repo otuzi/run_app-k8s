@@ -21,3 +21,6 @@ spec:
         image: praqma/network-multitool:latest
         ports:
         - containerPort: 8080
+        env:
+        - name: HTTP_PORT
+          value: "8080"

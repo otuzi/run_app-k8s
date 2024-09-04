@@ -96,7 +96,8 @@
 
 
 ### Ответ 
-Файл используемый в задании
+Файл используемый в задании:
+
 Deployment: https://github.com/otuzi/run_app-k8s/blob/main/nginx-deployment.yaml
 
 Service: https://github.com/otuzi/run_app-k8s/blob/main/nginx-service.yaml

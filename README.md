@@ -94,4 +94,50 @@
 3. Создать и запустить Service. Убедиться, что Init запустился.
 4. Продемонстрировать состояние пода до и после запуска сервиса.
 
+
+### Ответ 
+Файл используемый в задании
+Deployment: https://github.com/otuzi/run_app-k8s/blob/main/nginx-deployment.yaml
+Service: https://github.com/otuzi/run_app-k8s/blob/main/nginx-service.yaml
+
+вывод после запуска сервиса, начал работать основной под
+```
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ kubectl apply -f nginx-deployment.yaml 
+deployment.apps/nginx-deployment created
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ 
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ kubectl get pods
+NAME                                READY   STATUS     RESTARTS   AGE
+nginx-deployment-869548cf9b-mnqc4   0/1     Init:0/1   0          4s
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ kubectl get pods
+NAME                                READY   STATUS     RESTARTS   AGE
+nginx-deployment-869548cf9b-mnqc4   0/1     Init:0/1   0          10s
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ 
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ kubectl get pods
+NAME                                READY   STATUS     RESTARTS   AGE
+nginx-deployment-869548cf9b-mnqc4   0/1     Init:0/1   0          29s
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ 
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ kubectl apply -f nginx-service.yaml 
+service/nginx-service created
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ 
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ 
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ kubectl get pods
+NAME                                READY   STATUS            RESTARTS   AGE
+nginx-deployment-869548cf9b-mnqc4   0/1     PodInitializing   0          40s
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ 
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ kubectl get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-869548cf9b-mnqc4   1/1     Running   0          43s
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ 
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ 
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ kubectl get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-869548cf9b-mnqc4   1/1     Running   0          51s
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ kubectl get svc
+NAME            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+kubernetes      ClusterIP   10.152.183.1     <none>        443/TCP   78m
+nginx-service   ClusterIP   10.152.183.123   <none>        80/TCP    18s
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$ 
+ubuntu@fhmqhsd17bhg88oa8oac:~/k8s$
+```
+
 ------
